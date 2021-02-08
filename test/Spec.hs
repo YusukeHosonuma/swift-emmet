@@ -1,11 +1,12 @@
 module Main where
 
 import Test.HUnit
-import SwiftEmmet.ParserSpec
+import ParserSpec
 
 main :: IO ()
 main = do
     _ <- runTestTT $ TestList
-        [ parseTest
+        [ parseExprTest
+        , parseExprWithSpaceTest
         ]
     return ()

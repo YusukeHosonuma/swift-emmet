@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 9152efcc837391692e79dd2fcb469e868af267869ffcfd0ca011c3b0590dd05f
+-- hash: e4c94a5080e2e3b19f04232c3371a096582c3ef9ca639905f53b1ad3a6d4fcc8
 
 name:           swift-emmet
 version:        0.1.0.0
@@ -34,7 +34,9 @@ library
       src
   build-depends:
       HUnit
+    , attoparsec
     , base >=4.7 && <5
+    , text
   default-language: Haskell2010
 
 executable swift-emmet-exe
@@ -46,21 +48,25 @@ executable swift-emmet-exe
   ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       HUnit
+    , attoparsec
     , base >=4.7 && <5
     , swift-emmet
+    , text
   default-language: Haskell2010
 
 test-suite swift-emmet-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
-      SwiftEmmet.ParserSpec
+      ParserSpec
       Paths_swift_emmet
   hs-source-dirs:
       test
   ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       HUnit
+    , attoparsec
     , base >=4.7 && <5
     , swift-emmet
+    , text
   default-language: Haskell2010
