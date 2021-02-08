@@ -1,6 +1,14 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module SwiftEmmet.Parser where
+module Data.SwiftEmmet.Parser
+    ( parseExpr
+    , Field
+    , Type
+    , VariableType (Var, Let)
+    , Property (Property)
+    , DataType (Struct, Class)
+    , Expr (Expr)
+    ) where
 
 import Data.Char (toLower)
 import Data.Text ( pack, Text, toUpper )

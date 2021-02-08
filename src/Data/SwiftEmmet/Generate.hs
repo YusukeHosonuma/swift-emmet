@@ -1,9 +1,9 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module SwiftEmmet.Generate (generate) where
+module Data.SwiftEmmet.Generate (generate) where
 
 import qualified Data.Text as T ( Text, intercalate, lines, unlines )
-import SwiftEmmet.Parser
+import Data.SwiftEmmet.Parser
 
 generate :: Expr -> T.Text
 generate (Expr (Struct name) []) = "struct " <> name <> " {\n" <> "}"

@@ -3,7 +3,7 @@
 module ParserSpec where
 
 import Test.HUnit ( (~:), (~?=), Test(TestList) )
-import SwiftEmmet.Parser
+import Data.SwiftEmmet.Parser
 
 parseExprTest :: Test
 parseExprTest = TestList
