@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: e4c94a5080e2e3b19f04232c3371a096582c3ef9ca639905f53b1ad3a6d4fcc8
+-- hash: 4bb329b28b81491e7633d4116dd8e866acbb2ffd340c43faf8bd4d2e794e680a
 
 name:           swift-emmet
 version:        0.1.0.0
@@ -27,6 +27,7 @@ source-repository head
 
 library
   exposed-modules:
+      SwiftEmmet.Generate
       SwiftEmmet.Parser
   other-modules:
       Paths_swift_emmet
@@ -58,6 +59,7 @@ test-suite swift-emmet-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      GenerateSpec
       ParserSpec
       Paths_swift_emmet
   hs-source-dirs:
