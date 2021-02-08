@@ -2,12 +2,12 @@
 
 module Main where
 
-import System.Environment
-import System.IO
-import Data.SwiftEmmet
-import qualified Data.Text as T
-import qualified Data.Text.IO as T
-import System.Exit
+import           Data.SwiftEmmet
+import qualified Data.Text          as T
+import qualified Data.Text.IO       as T
+import           System.Environment
+import           System.Exit
+import           System.IO
 
 main :: IO ()
 main = do
@@ -25,7 +25,7 @@ main = do
             if expr == "exit"
                 then
                     exitWith ExitSuccess
-                else 
+                else
                     case eval (T.pack expr) of
                         Right s -> T.putStrLn s
                         Left  s -> T.putStrLn s

@@ -2,8 +2,8 @@
 
 module Data.SwiftEmmet.Generate (generate) where
 
-import qualified Data.Text as T ( Text, intercalate, lines, unlines )
-import Data.SwiftEmmet.Parser
+import           Data.SwiftEmmet.Parser
+import qualified Data.Text              as T (Text, intercalate, lines, unlines)
 
 generate :: Expr -> T.Text
 generate (Expr (Struct name) []) = "struct " <> name <> " {\n" <> "}"
@@ -11,7 +11,7 @@ generate (Expr (Class name)  []) = "class "  <> name <> " {\n" <> initializer []
 generate (Expr (Struct name) ps) = "struct " <> name <> " {\n" <> properties ps <> "\n}"
 generate (Expr (Class name) ps)  = "class "  <> name <> " {\n" <> properties ps <> "\n\n" <> initializer ps <> "\n}"
 
-properties :: [Property] -> T.Text 
+properties :: [Property] -> T.Text
 properties = join . map (indent . property)
 
 property :: Property -> T.Text
@@ -32,8 +32,8 @@ initializer ps = indent' $
 indent :: T.Text -> T.Text
 indent = ("    " <>)
 
-indent' :: T.Text -> T.Text 
+indent' :: T.Text -> T.Text
 indent' xs = join $ map indent $ T.lines xs
 
-join :: [T.Text] -> T.Text 
+join :: [T.Text] -> T.Text
 join = T.intercalate "\n"

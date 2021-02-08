@@ -10,10 +10,10 @@ module Data.SwiftEmmet.Parser
     , Expr (Expr)
     ) where
 
-import Data.Char (toLower)
-import Data.Text ( pack, Text, toUpper )
-import Data.Attoparsec.Text
-import Control.Applicative
+import           Control.Applicative
+import           Data.Attoparsec.Text
+import           Data.Char            (toLower)
+import           Data.Text            (Text, pack, toUpper)
 
 type Field = Text
 type Type = Text
@@ -30,12 +30,12 @@ parseExpr s = showParseResult
 
 exprParser :: Parser Expr
 exprParser = Expr
-    <$> dataTypeParser 
+    <$> dataTypeParser
     <*> ((schar '>' *> propertiesParser <* endOfInput) <|> (endOfInput >> pure []))
 
 dataTypeParser :: Parser DataType
 dataTypeParser =
-    (Struct <$> (ichar 'S' *> schar '.' *> word)) <|> 
+    (Struct <$> (ichar 'S' *> schar '.' *> word)) <|>
     (Class  <$> (ichar 'C' *> schar '.' *> word))
 
 propertiesParser :: Parser [Property]
@@ -69,8 +69,8 @@ ichar c = schar c <|> schar (toLower c)
 
 -- ignore enclose white-spaces
 schar :: Char -> Parser Char
-schar c = skipSpace *> char c <* skipSpace 
+schar c = skipSpace *> char c <* skipSpace
 
 showParseResult :: Show a => Result a -> Either Text a
 showParseResult (Done _ r) = Right r
-showParseResult r = Left . pack $ show r
+showParseResult r          = Left . pack $ show r
