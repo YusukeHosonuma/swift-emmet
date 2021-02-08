@@ -1,2 +1,11 @@
+module Main where
+
+import Test.HUnit
+import SwiftEmmet.ParserSpec
+
 main :: IO ()
-main = putStrLn "Test suite not yet implemented"
+main = do
+    _ <- runTestTT $ TestList
+        [ parseTest
+        ]
+    return ()
