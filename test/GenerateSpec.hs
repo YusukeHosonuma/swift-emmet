@@ -3,8 +3,8 @@
 module GenerateSpec where
 
 import Test.HUnit
-import SwiftEmmet.Parser
-import SwiftEmmet.Generate
+import Data.SwiftEmmet.Parser
+import Data.SwiftEmmet.Generate
 import Data.Text
 
 generateTest :: Test 
