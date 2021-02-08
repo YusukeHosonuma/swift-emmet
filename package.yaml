@@ -1,10 +1,10 @@
 name:                swift-emmet
 version:             0.1.0.0
-github:              "githubuser/swift-emmet"
-license:             BSD3
-author:              "Author name here"
-maintainer:          "example@example.com"
-copyright:           "2021 Author name here"
+github:              "YusukeHosonuma/swift-emmet"
+license:             MIT
+author:              "Yusuke Hosonuma"
+maintainer:          "tobi462@gmail.com"
+copyright:           "2021 Yusuke Hosonuma"
 
 extra-source-files:
 - README.md
@@ -17,19 +17,19 @@ extra-source-files:
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
 # common to point users to the README.md file.
-description:         Please see the README on GitHub at <https://github.com/githubuser/swift-emmet#readme>
+description:         Please see the README on GitHub at <https://github.com/YusukeHosonuma/swift-emmet#README.md>
 
 dependencies:
+- attoparsec
 - base >= 4.7 && < 5
 - HUnit
-- attoparsec
 - text
 
 library:
   source-dirs: src
 
 executables:
-  swift-emmet-exe:
+  swift-emmet:
     main:                Main.hs
     source-dirs:         app
     ghc-options:
