@@ -1,0 +1,13 @@
+cradle:
+  stack:
+    - path: "./src"
+      component: "swift-emmet:lib"
+
+    - path: "./app/Main.hs"
+      component: "swift-emmet:exe:swift-emmet-exe"
+
+    - path: "./app/Paths_swift_emmet.hs"
+      component: "swift-emmet:exe:swift-emmet-exe"
+
+    - path: "./test"
+      component: "swift-emmet:test:swift-emmet-test"
