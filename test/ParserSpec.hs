@@ -33,6 +33,11 @@ parseExprTest = TestList
         ~?= Right (Expr (Class "Person") [ Property Let "name" "String"
                                          , Property Var "age" "Int"
                                          , Property Var "weight" "Double"])
+    , "parse test 6" ~:
+        parseExpr "S.Person=name:String,age:Int,weight:Double"
+        ~?= Right (Expr (Struct "Person") [ Property Var "name" "String"
+                                          , Property Var "age" "Int"
+                                          , Property Var "weight" "Double"])
     ]
 
 parseExprWithSpaceTest :: Test
@@ -63,6 +68,11 @@ parseExprWithSpaceTest = TestList
         ~?= Right (Expr (Class "Person") [ Property Let "name" "String"
                                          , Property Var "age" "Int"
                                          , Property Var "weight" "Double"])
+    , "parse white-space test 6" ~:
+        parseExpr "S . Person = name : String , age : Int , weight : Double"
+        ~?= Right (Expr (Struct "Person") [ Property Var "name" "String"
+                                          , Property Var "age" "Int"
+                                          , Property Var "weight" "Double"])
     ]
 
 parseExprAliasTest :: Test

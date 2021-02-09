@@ -2,7 +2,7 @@
 
 A CLI tool that generate struct or class by simple-syntax.
 
-```text
+```bash
 $ swift-emmet 'S.Person = l.name:String, v.age:Int, v.weight:Double'
 ```
 
@@ -22,10 +22,13 @@ struct Person {
 
 ```bash
 # Generate struct
-$ swift-emmet S.Person=l.name:String,v.age:Int,v.weight:Double
+$ swift-emmet 'S.Person = l.name:String, v.age:Int, v.weight:Double'
 
 # Generate class
-$ swift-emmet C.Person=l.name:String,v.age:Int,v.weight:Double
+$ swift-emmet 'C.Person = l.name:String, v.age:Int, v.weight:Double'
+
+# Ommit `let` or `var` (`var` will be used)
+$ swift-emmet 'S.Person = name:String, age:Int, weight:Double'
 
 # Basic types are supported alias
 #
@@ -37,10 +40,11 @@ $ swift-emmet C.Person=l.name:String,v.age:Int,v.weight:Double
 # D = Double
 # U = URL
 #
-$ swift-emmet S.Person=l.name:S,v.age:I,v.weight:D
+$ swift-emmet 'S.Person = l.name:S, v.age:I, v.weight:D'
 
-# Allow any white-space
+# Any white-space (or not) are allows
 $ swift-emmet 'S . Person = l . name : String'
+$ swift-emmet 'S.Person=l.name:String'
 ```
 
 ### REPL

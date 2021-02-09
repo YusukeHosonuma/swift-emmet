@@ -42,10 +42,12 @@ propertiesParser :: Parser [Property]
 propertiesParser = propertyParser `sepBy` schar ','
 
 propertyParser :: Parser Property
-propertyParser = Property <$> variableType <*> (schar '.' *> field) <*> (schar ':' *> typeName)
+propertyParser = Property <$> variableType <*> field <*> (schar ':' *> typeName)
     where
         variableType :: Parser VariableType
-        variableType = (char 'v' >> return Var) <|> (char 'l' >> return Let)
+        variableType = (ichar 'v' *> schar '.' *> return Var) 
+                   <|> (ichar 'l' *> schar '.' *> return Let) 
+                   <|> return Var
 
         field :: Parser Text
         field = pack <$> many1 letter
