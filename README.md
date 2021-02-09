@@ -86,7 +86,10 @@ Available options:
 
 ### Homebrew
 
-T.B.D
+```bash
+$ brew tap YusukeHosonuma/swift-emmet
+$ brew install swift-emmet
+```
 
 ### Manual
 
