@@ -16,6 +16,11 @@ struct Person {
 }
 ```
 
+## TODO
+
+- [ ] Support Apple Silicon
+- [ ] Distribute binary for Linux
+
 ## Usage
 
 ### Example
