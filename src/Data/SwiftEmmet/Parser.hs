@@ -31,7 +31,7 @@ parseExpr s = showParseResult
 exprParser :: Parser Expr
 exprParser = Expr
     <$> dataTypeParser
-    <*> ((schar '>' *> propertiesParser <* endOfInput) <|> (endOfInput >> pure []))
+    <*> ((schar '=' *> propertiesParser <* endOfInput) <|> (endOfInput >> pure []))
 
 dataTypeParser :: Parser DataType
 dataTypeParser =
@@ -42,10 +42,12 @@ propertiesParser :: Parser [Property]
 propertiesParser = propertyParser `sepBy` schar ','
 
 propertyParser :: Parser Property
-propertyParser = Property <$> variableType <*> (schar '.' *> field) <*> (schar ':' *> typeName)
+propertyParser = Property <$> variableType <*> field <*> (schar ':' *> typeName)
     where
         variableType :: Parser VariableType
-        variableType = (char 'v' >> return Var) <|> (char 'l' >> return Let)
+        variableType = (ichar 'v' *> schar '.' *> return Var) 
+                   <|> (ichar 'l' *> schar '.' *> return Let) 
+                   <|> return Var
 
         field :: Parser Text
         field = pack <$> many1 letter
@@ -59,8 +61,12 @@ typeName = resolveAlias <$> word
 resolveAlias :: Type -> Type
 resolveAlias t = case toUpper t of
     "S" -> "String"
+    "B" -> "Bool"
     "I" -> "Int"
+    "L" -> "Long"
+    "F" -> "Float"
     "D" -> "Double"
+    "U" -> "URL"
     _   -> t
 
 -- ignore case-sensitive

@@ -91,11 +91,16 @@ usageMessage = unlines
 helpMessage :: String
 helpMessage = unlines
     [ "Expression example:"
-    , "- S.Person>l.name:String,v.age:Int,v.weight:Double - generate struct"
-    , "- C.Person>l.name:S,v.age:I,v.weight:Double        - generate class"
+    , "- S.Person = l.name:String, v.age:Int, v.weight:Double - generate struct"
+    , "- C.Person = l.name:S, v.age:I, v.weight:Double        - generate class"
+    , "- S.Person = name:String, age:Int, weight:Double       - ommit `var` or `let`"
     , ""
     , "Type aliases:"
     , "- S = String"
+    , "- B = Bool"
     , "- I = Int"
+    , "- L = Long"
+    , "- F = Float"
     , "- D = Double"
+    , "- U = URL"
     ]
