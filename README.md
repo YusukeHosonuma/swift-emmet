@@ -112,6 +112,11 @@ $ stack build
 $ stack test
 ```
 
+## Issues and PR
+
+You have any ideas or found bugs? Any issue or PR is welcome.<br>
+Thanks!
+
 ## Author
 
 [Yusuke Hosonuma](https://github.com/YusukeHosonuma)
