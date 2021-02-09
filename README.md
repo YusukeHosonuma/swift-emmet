@@ -55,19 +55,10 @@ If you run `swift-emmet` without options, REPL will be started.
 $ swift-emmet
 --------------------------------------------------------------------
 Welcome swift-emmet 🎉
-
-Expression example:
-- S.Person>l.name:String,v.age:Int,v.weight:Double - generate struct
-- C.Person>l.name:S,v.age:I,v.weight:Double        - generate class
-
-Type aliases:
-- S = String
-- I = Int
-- D = Double
-
+...
 --------------------------------------------------------------------
 
-swift-emmet> swift-emmet> S.Person>l.name:String
+swift-emmet> S.Person = l.name:String # Please input expr
 
 struct Person {
     let name: String
