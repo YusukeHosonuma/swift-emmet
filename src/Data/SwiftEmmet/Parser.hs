@@ -31,7 +31,7 @@ parseExpr s = showParseResult
 exprParser :: Parser Expr
 exprParser = Expr
     <$> dataTypeParser
-    <*> ((schar '>' *> propertiesParser <* endOfInput) <|> (endOfInput >> pure []))
+    <*> ((schar '=' *> propertiesParser <* endOfInput) <|> (endOfInput >> pure []))
 
 dataTypeParser :: Parser DataType
 dataTypeParser =
