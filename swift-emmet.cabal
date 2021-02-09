@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: fcf45f7d5722d3aa655a1131a22f04b889e5f4a3be55f5276b583a3be23e0990
+-- hash: b00aebfd7ba9ca7667f072e250f403e955fdb431d9a734dd03c7573c8e4c11f8
 
 name:           swift-emmet
 version:        0.1.0.0
@@ -38,6 +38,7 @@ library
       HUnit
     , attoparsec
     , base >=4.7 && <5
+    , optparse-applicative
     , text
   default-language: Haskell2010
 
@@ -52,6 +53,7 @@ executable swift-emmet
       HUnit
     , attoparsec
     , base >=4.7 && <5
+    , optparse-applicative
     , swift-emmet
     , text
   default-language: Haskell2010
@@ -70,6 +72,7 @@ test-suite swift-emmet-test
       HUnit
     , attoparsec
     , base >=4.7 && <5
+    , optparse-applicative
     , swift-emmet
     , text
   default-language: Haskell2010

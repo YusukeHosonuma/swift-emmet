@@ -4,10 +4,10 @@ cradle:
       component: "swift-emmet:lib"
 
     - path: "./app/Main.hs"
-      component: "swift-emmet:exe:swift-emmet-exe"
+      component: "swift-emmet:exe:swift-emmet"
 
     - path: "./app/Paths_swift_emmet.hs"
-      component: "swift-emmet:exe:swift-emmet-exe"
+      component: "swift-emmet:exe:swift-emmet"
 
     - path: "./test"
       component: "swift-emmet:test:swift-emmet-test"
