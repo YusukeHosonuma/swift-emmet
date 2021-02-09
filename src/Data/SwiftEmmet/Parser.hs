@@ -59,8 +59,12 @@ typeName = resolveAlias <$> word
 resolveAlias :: Type -> Type
 resolveAlias t = case toUpper t of
     "S" -> "String"
+    "B" -> "Bool"
     "I" -> "Int"
+    "L" -> "Long"
+    "F" -> "Float"
     "D" -> "Double"
+    "U" -> "URL"
     _   -> t
 
 -- ignore case-sensitive

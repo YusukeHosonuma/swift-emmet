@@ -96,6 +96,10 @@ helpMessage = unlines
     , ""
     , "Type aliases:"
     , "- S = String"
+    , "- B = Bool"
     , "- I = Int"
+    , "- L = Long"
+    , "- F = Float"
     , "- D = Double"
+    , "- U = URL"
     ]

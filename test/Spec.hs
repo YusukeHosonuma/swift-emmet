@@ -9,6 +9,7 @@ main = do
     _ <- runTestTT $ TestList
         [ parseExprTest
         , parseExprWithSpaceTest
+        , parseExprAliasTest
         , generateTest
         ]
     return ()

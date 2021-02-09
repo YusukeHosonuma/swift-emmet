@@ -32,6 +32,8 @@ $ swift-emmet C.Person=l.name:String,v.age:Int,v.weight:Double
 # S = String
 # B = Bool
 # I = Int
+# L = Long
+# F = Float
 # D = Double
 # U = URL
 #
