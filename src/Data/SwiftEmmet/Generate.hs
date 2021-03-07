@@ -3,7 +3,7 @@
 module Data.SwiftEmmet.Generate (generate) where
 
 import           Data.SwiftEmmet.Parser
-import qualified Data.Text              as T (Text, intercalate, lines, unlines, concat, append)
+import qualified Data.Text              as T (Text, intercalate, lines, unlines)
 
 generate :: Expr -> T.Text
 generate (Expr (Struct name) inharits []) = "struct " <> name <> inharitsToText inharits <> " {\n" <> "}"
