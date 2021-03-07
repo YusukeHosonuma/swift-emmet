@@ -8,6 +8,7 @@ module Data.SwiftEmmet.Parser
     , Property (Property)
     , DataType (Struct, Class)
     , Expr (Expr)
+    , Inharit (Inharit)
     ) where
 
 import           Control.Applicative
@@ -22,7 +23,9 @@ data Property = Property VariableType Field Type deriving (Show, Eq)
 data DataType = Struct Text
               | Class Text
               deriving (Show, Eq)
-data Expr = Expr DataType [Property] deriving (Show, Eq)
+data Inharit = Inharit Text deriving (Show, Eq)
+
+data Expr = Expr DataType [Inharit] [Property] deriving (Show, Eq)
 
 parseExpr :: Text -> Either Text Expr
 parseExpr s = showParseResult
@@ -31,6 +34,7 @@ parseExpr s = showParseResult
 exprParser :: Parser Expr
 exprParser = Expr
     <$> dataTypeParser
+    <*> inharitsParser
     <*> ((schar '=' *> propertiesParser <* endOfInput) <|> (endOfInput >> pure []))
 
 dataTypeParser :: Parser DataType
@@ -68,6 +72,13 @@ resolveAlias t = case toUpper t of
     "D" -> "Double"
     "U" -> "URL"
     _   -> t
+
+inharitsParser :: Parser [Inharit]
+inharitsParser = schar ':' *> inharitParser `sepBy` schar ',' 
+              <|> return []
+    where 
+        inharitParser :: Parser Inharit
+        inharitParser = Inharit <$> word
 
 -- ignore case-sensitive
 ichar :: Char -> Parser Char
