@@ -10,21 +10,21 @@ import Data.Text
 generateTest :: Test 
 generateTest = TestList
     [ "generate test 1" ~:
-        generate (Expr (Struct "Person") [])
+        generate (Expr (Struct "Person") [] [])
         ~?= text [ "struct Person {"
                  , "}" ]
     , "generate test 2" ~:
-        generate (Expr (Class "Person") [])
+        generate (Expr (Class "Person") [] [])
         ~?= text [ "class Person {"
                  , "    init() {}"
                  , "}" ]
     , "generate test 3" ~:
-        generate (Expr (Struct "Person") [Property Let "name" "String"])
+        generate (Expr (Struct "Person") [] [Property Let "name" "String"])
         ~?= text [ "struct Person {"
                  , "    let name: String"
                  , "}" ]
     , "generate test 4" ~:
-        generate (Expr (Struct "Person") [ Property Let "name"   "String"
+        generate (Expr (Struct "Person") [] [ Property Let "name"   "String"
                                          , Property Var "age"    "Int"
                                          , Property Var "weight" "Double"
                                          ])
@@ -34,7 +34,7 @@ generateTest = TestList
                  , "    var weight: Double"
                  , "}" ]
     , "generate test 5" ~:
-        generate (Expr (Class "Person") [ Property Let "name"   "String"
+        generate (Expr (Class "Person") [] [ Property Let "name"   "String"
                                         , Property Var "age"    "Int"
                                         , Property Var "weight" "Double"
                                         ])
@@ -51,6 +51,28 @@ generateTest = TestList
                  , "        self.weight = weight"
                  , "    }"
                  , "}" ]
+    ]
+
+generateWithInheritsTest :: Test
+generateWithInheritsTest = TestList
+    [ "generate inherits test 1" ~:
+        generate (Expr (Struct "Person") [Inherit "Foo"] [])
+        ~?= text [ "struct Person: Foo {"
+                 , "}"]
+    , "generate inherits test 2" ~:
+        generate (Expr (Struct "Person") [Inherit "Foo", Inherit "Bar"] [])
+        ~?= text [ "struct Person: Foo, Bar {"
+                 , "}"]
+    , "generate inherits test 3" ~:
+        generate (Expr (Class "Person") [Inherit "Foo"] [])
+        ~?= text [ "class Person: Foo {"
+                 , "    init() {}"
+                 , "}"]
+    , "generate inherits test 4" ~:
+        generate (Expr (Class "Person") [Inherit "Foo", Inherit "Bar"] [])
+        ~?= text [ "class Person: Foo, Bar {"
+                 , "    init() {}"
+                 , "}"]
     ]
 
 text :: [Text] -> Text

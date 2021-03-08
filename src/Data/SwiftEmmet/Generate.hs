@@ -6,10 +6,10 @@ import           Data.SwiftEmmet.Parser
 import qualified Data.Text              as T (Text, intercalate, lines, unlines)
 
 generate :: Expr -> T.Text
-generate (Expr (Struct name) []) = "struct " <> name <> " {\n" <> "}"
-generate (Expr (Class name)  []) = "class "  <> name <> " {\n" <> initializer [] <> "\n}"
-generate (Expr (Struct name) ps) = "struct " <> name <> " {\n" <> properties ps <> "\n}"
-generate (Expr (Class name) ps)  = "class "  <> name <> " {\n" <> properties ps <> "\n\n" <> initializer ps <> "\n}"
+generate (Expr (Struct name) inherits []) = "struct " <> name <> inheritsToText inherits <> " {\n" <> "}"
+generate (Expr (Class  name) inherits []) = "class "  <> name <> inheritsToText inherits <> " {\n" <> initializer [] <> "\n}"
+generate (Expr (Struct name) inherits ps) = "struct " <> name <> inheritsToText inherits <> " {\n" <> properties ps <> "\n}"
+generate (Expr (Class  name) inherits ps) = "class "  <> name <> inheritsToText inherits <> " {\n" <> properties ps <> "\n\n" <> initializer ps <> "\n}"
 
 properties :: [Property] -> T.Text
 properties = join . map (indent . property)
@@ -37,3 +37,7 @@ indent' xs = join $ map indent $ T.lines xs
 
 join :: [T.Text] -> T.Text
 join = T.intercalate "\n"
+
+inheritsToText :: [Inherit] -> T.Text 
+inheritsToText [] = ""
+inheritsToText xs = ": " <> T.intercalate ", " (map unInherit xs)
