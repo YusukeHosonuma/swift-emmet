@@ -8,7 +8,7 @@ module Data.SwiftEmmet.Parser
     , Property (Property)
     , DataType (Struct, Class)
     , Expr (Expr)
-    , Inharit (Inharit)
+    , Inherit (Inherit)
     ) where
 
 import           Control.Applicative
@@ -23,9 +23,9 @@ data Property = Property VariableType Field Type deriving (Show, Eq)
 data DataType = Struct Text
               | Class Text
               deriving (Show, Eq)
-data Inharit = Inharit Text deriving (Show, Eq)
+data Inherit = Inherit Text deriving (Show, Eq)
 
-data Expr = Expr DataType [Inharit] [Property] deriving (Show, Eq)
+data Expr = Expr DataType [Inherit] [Property] deriving (Show, Eq)
 
 parseExpr :: Text -> Either Text Expr
 parseExpr s = showParseResult
@@ -34,7 +34,7 @@ parseExpr s = showParseResult
 exprParser :: Parser Expr
 exprParser = Expr
     <$> dataTypeParser
-    <*> inharitsParser
+    <*> inheritsParser
     <*> ((schar '=' *> propertiesParser <* endOfInput) <|> (endOfInput >> pure []))
 
 dataTypeParser :: Parser DataType
@@ -73,12 +73,12 @@ resolveAlias t = case toUpper t of
     "U" -> "URL"
     _   -> t
 
-inharitsParser :: Parser [Inharit]
-inharitsParser = schar ':' *> inharitParser `sepBy` schar ',' 
+inheritsParser :: Parser [Inherit]
+inheritsParser = schar ':' *> inheritParser `sepBy` schar ',' 
               <|> return []
     where 
-        inharitParser :: Parser Inharit
-        inharitParser = Inharit <$> word
+        inheritParser :: Parser Inherit
+        inheritParser = Inherit <$> word
 
 -- ignore case-sensitive
 ichar :: Char -> Parser Char

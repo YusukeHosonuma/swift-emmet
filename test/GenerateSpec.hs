@@ -53,23 +53,23 @@ generateTest = TestList
                  , "}" ]
     ]
 
-generateWithInharitsTest :: Test
-generateWithInharitsTest = TestList
-    [ "generate inharits test 1" ~:
-        generate (Expr (Struct "Person") [Inharit "Foo"] [])
+generateWithInheritsTest :: Test
+generateWithInheritsTest = TestList
+    [ "generate inherits test 1" ~:
+        generate (Expr (Struct "Person") [Inherit "Foo"] [])
         ~?= text [ "struct Person: Foo {"
                  , "}"]
-    , "generate inharits test 2" ~:
-        generate (Expr (Struct "Person") [Inharit "Foo", Inharit "Bar"] [])
+    , "generate inherits test 2" ~:
+        generate (Expr (Struct "Person") [Inherit "Foo", Inherit "Bar"] [])
         ~?= text [ "struct Person: Foo, Bar {"
                  , "}"]
-    , "generate inharits test 3" ~:
-        generate (Expr (Class "Person") [Inharit "Foo"] [])
+    , "generate inherits test 3" ~:
+        generate (Expr (Class "Person") [Inherit "Foo"] [])
         ~?= text [ "class Person: Foo {"
                  , "    init() {}"
                  , "}"]
-    , "generate inharits test 4" ~:
-        generate (Expr (Class "Person") [Inharit "Foo", Inharit "Bar"] [])
+    , "generate inherits test 4" ~:
+        generate (Expr (Class "Person") [Inherit "Foo", Inherit "Bar"] [])
         ~?= text [ "class Person: Foo, Bar {"
                  , "    init() {}"
                  , "}"]

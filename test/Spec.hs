@@ -11,7 +11,7 @@ main = do
         , parseExprWithSpaceTest
         , parseExprAliasTest
         , generateTest
-        , parseExprWithInharitsTest
-        , generateWithInharitsTest
+        , parseExprWithInheritsTest
+        , generateWithInheritsTest
         ]
     return ()

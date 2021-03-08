@@ -75,26 +75,26 @@ parseExprWithSpaceTest = TestList
                                           , Property Var "weight" "Double"])
     ]
 
-parseExprWithInharitsTest :: Test
-parseExprWithInharitsTest = TestList
-    [ "parse inharits test 1" ~:
+parseExprWithInheritsTest :: Test
+parseExprWithInheritsTest = TestList
+    [ "parse inherits test 1" ~:
         parseExpr "S.Person: Foo"
-            ~?= Right (Expr (Struct "Person") [Inharit "Foo"] [])
-    , "parse inharits test 2" ~:
+            ~?= Right (Expr (Struct "Person") [Inherit "Foo"] [])
+    , "parse inherits test 2" ~:
         parseExpr "S.Parson: Foo = l.name: s"
-            ~?= Right (Expr (Struct "Parson") [Inharit "Foo"] [Property Let "name" "String"])
-    , "parse inharits test 3" ~:
+            ~?= Right (Expr (Struct "Parson") [Inherit "Foo"] [Property Let "name" "String"])
+    , "parse inherits test 3" ~:
         parseExpr "S.Person: Foo, Bar"
-            ~?= Right (Expr (Struct "Person") [Inharit "Foo", Inharit "Bar"] [])
-    , "parse inharits test 4" ~:
+            ~?= Right (Expr (Struct "Person") [Inherit "Foo", Inherit "Bar"] [])
+    , "parse inherits test 4" ~:
         parseExpr "C.Person: Foo"
-            ~?= Right (Expr (Class "Person") [Inharit "Foo"] [])
-    , "parse inharits test 5" ~:
+            ~?= Right (Expr (Class "Person") [Inherit "Foo"] [])
+    , "parse inherits test 5" ~:
         parseExpr "C.Parson: Foo = l.name: s"
-            ~?= Right (Expr (Class "Parson") [Inharit "Foo"] [Property Let "name" "String"])
-    , "parse inharits test 6" ~:
+            ~?= Right (Expr (Class "Parson") [Inherit "Foo"] [Property Let "name" "String"])
+    , "parse inherits test 6" ~:
         parseExpr "C.Person: Foo, Bar"
-            ~?= Right (Expr (Class "Person") [Inharit "Foo", Inharit "Bar"] [])
+            ~?= Right (Expr (Class "Person") [Inherit "Foo", Inherit "Bar"] [])
     ]
 
 parseExprAliasTest :: Test

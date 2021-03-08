@@ -6,10 +6,10 @@ import           Data.SwiftEmmet.Parser
 import qualified Data.Text              as T (Text, intercalate, lines, unlines)
 
 generate :: Expr -> T.Text
-generate (Expr (Struct name) inharits []) = "struct " <> name <> inharitsToText inharits <> " {\n" <> "}"
-generate (Expr (Class  name) inharits []) = "class "  <> name <> inharitsToText inharits <> " {\n" <> initializer [] <> "\n}"
-generate (Expr (Struct name) inharits ps) = "struct " <> name <> inharitsToText inharits <> " {\n" <> properties ps <> "\n}"
-generate (Expr (Class  name) inharits ps)   "class "  <> name <> inharitsToText inharits <> " {\n" <> properties ps <> "\n\n" <> initializer ps <> "\n}"
+generate (Expr (Struct name) inherits []) = "struct " <> name <> inheritsToText inherits <> " {\n" <> "}"
+generate (Expr (Class  name) inherits []) = "class "  <> name <> inheritsToText inherits <> " {\n" <> initializer [] <> "\n}"
+generate (Expr (Struct name) inherits ps) = "struct " <> name <> inheritsToText inherits <> " {\n" <> properties ps <> "\n}"
+generate (Expr (Class  name) inherits ps) = "class "  <> name <> inheritsToText inherits <> " {\n" <> properties ps <> "\n\n" <> initializer ps <> "\n}"
 
 properties :: [Property] -> T.Text
 properties = join . map (indent . property)
@@ -38,9 +38,9 @@ indent' xs = join $ map indent $ T.lines xs
 join :: [T.Text] -> T.Text
 join = T.intercalate "\n"
 
-inharitsToText :: [Inharit] -> T.Text 
-inharitsToText [] = ""
-inharitsToText xs = ": " <> (T.intercalate ", " $ map toText xs)
+inheritsToText :: [Inherit] -> T.Text 
+inheritsToText [] = ""
+inheritsToText xs = ": " <> (T.intercalate ", " $ map toText xs)
     where
-        toText :: Inharit -> T.Text
-        toText (Inharit x) = x
+        toText :: Inherit -> T.Text
+        toText (Inherit x) = x
