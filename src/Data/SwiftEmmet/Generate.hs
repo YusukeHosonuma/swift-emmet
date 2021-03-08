@@ -7,9 +7,9 @@ import qualified Data.Text              as T (Text, intercalate, lines, unlines)
 
 generate :: Expr -> T.Text
 generate (Expr (Struct name) inharits []) = "struct " <> name <> inharitsToText inharits <> " {\n" <> "}"
-generate (Expr (Class name) inharits []) = "class "  <> name <> inharitsToText inharits <> " {\n" <> initializer [] <> "\n}"
+generate (Expr (Class  name) inharits []) = "class "  <> name <> inharitsToText inharits <> " {\n" <> initializer [] <> "\n}"
 generate (Expr (Struct name) inharits ps) = "struct " <> name <> inharitsToText inharits <> " {\n" <> properties ps <> "\n}"
-generate (Expr (Class name) inharits ps)  = "class "  <> name <> inharitsToText inharits <> " {\n" <> properties ps <> "\n\n" <> initializer ps <> "\n}"
+generate (Expr (Class  name) inharits ps)   "class "  <> name <> inharitsToText inharits <> " {\n" <> properties ps <> "\n\n" <> initializer ps <> "\n}"
 
 properties :: [Property] -> T.Text
 properties = join . map (indent . property)
