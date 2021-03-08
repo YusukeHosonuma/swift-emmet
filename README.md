@@ -18,6 +18,7 @@ struct Person {
 
 ## TODO
 
+- [ ] Decent REPL :)
 - [ ] Support Apple Silicon
 - [ ] Distribute binary for Linux
 
