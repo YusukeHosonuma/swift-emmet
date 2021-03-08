@@ -40,7 +40,4 @@ join = T.intercalate "\n"
 
 inheritsToText :: [Inherit] -> T.Text 
 inheritsToText [] = ""
-inheritsToText xs = ": " <> (T.intercalate ", " $ map toText xs)
-    where
-        toText :: Inherit -> T.Text
-        toText (Inherit x) = x
+inheritsToText xs = ": " <> T.intercalate ", " (map unInherit xs)

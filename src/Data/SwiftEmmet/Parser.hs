@@ -8,7 +8,7 @@ module Data.SwiftEmmet.Parser
     , Property (Property)
     , DataType (Struct, Class)
     , Expr (Expr)
-    , Inherit (Inherit)
+    , Inherit (Inherit, unInherit)
     ) where
 
 import           Control.Applicative
@@ -23,7 +23,7 @@ data Property = Property VariableType Field Type deriving (Show, Eq)
 data DataType = Struct Text
               | Class Text
               deriving (Show, Eq)
-data Inherit = Inherit Text deriving (Show, Eq)
+newtype Inherit = Inherit { unInherit :: Text } deriving (Show, Eq)
 
 data Expr = Expr DataType [Inherit] [Property] deriving (Show, Eq)
 
