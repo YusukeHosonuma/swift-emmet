@@ -100,9 +100,11 @@ parseExprWithInheritsTest = TestList
 parseExprAliasTest :: Test
 parseExprAliasTest = TestList
     [ "parseExpr alias test 1" ~:
-      parseExpr "S.Foo = v.s:S, v.b:B, v.i:I, v.l:L, v.f:F, v.d:D, v.u:U, v.other:Other"
+      parseExpr "S.Foo: E,C = v.s:S, v.b:B, v.i:I, v.l:L, v.f:F, v.d:D, v.u:U, v.other:Other"
       ~?= Right (Expr (Struct "Foo")
-        []
+        [ Inherit "Equatable"
+        , Inherit "Codable"
+        ]
         [ Property Var "s" "String"
         , Property Var "b" "Bool"
         , Property Var "i" "Int"

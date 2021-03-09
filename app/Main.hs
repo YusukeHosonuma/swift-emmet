@@ -24,7 +24,7 @@ usageParser = infoOption (usageMessage <> "\n" <> helpMessage)
     <> help "Show detail usage"
 
 version :: Parser (a -> a)
-version = infoOption "0.1.0.0"
+version = infoOption versionString
     $  long "version"
     <> help "Show version"
 

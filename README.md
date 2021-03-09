@@ -3,14 +3,14 @@
 A CLI tool that generate struct or class by simple-syntax.
 
 ```bash
-$ swift-emmet 's.Person = l.name:String, v.age:Int, v.weight:Double'
+$ swift-emmet "s.Pserson: E, C = name: S, age: I, weight: D"
 ```
 
 This will generate follows.
 
 ```swift
-struct Person {
-    let name: String
+struct Pserson: Equatable, Codable {
+    var name: String
     var age: Int
     var weight: Double
 }
@@ -21,6 +21,34 @@ struct Person {
 - [ ] Decent REPL :)
 - [ ] Support Apple Silicon
 - [ ] Distribute binary for Linux
+
+## Aliases
+
+Basic types and protocols are supported aliases (case is ignored).
+
+```bash
+$ swift-emmet 's.Person: E, C = name:S, age:I, weight:D'
+struct Person: Equatable, Codable {
+    var name: String
+    var age: Int
+    var weight: Double
+}
+```
+
+| Alias | Type |
+|:--|:--|
+| S | String |
+| B | Bool   |
+| I | Int    |
+| L | Long   |
+| F | Float  |
+| D | Double |
+| U | URL    |
+
+| Alias | Protocols |
+|:--|:--|
+| E | Equatable |
+| C | Codable   |
 
 ## Usage
 
@@ -36,17 +64,8 @@ $ swift-emmet 'c.Person = l.name:String, v.age:Int, v.weight:Double'
 # Ommit `let` or `var` (`var` will be used)
 $ swift-emmet 's.Person = name:String, age:Int, weight:Double'
 
-# Basic types are supported alias
-#
-# S = String
-# B = Bool
-# I = Int
-# L = Long
-# F = Float
-# D = Double
-# U = URL
-#
-$ swift-emmet 's.Person = l.name:S, v.age:I, v.weight:D'
+# Inherit protocol or class
+$ swift-emmet 's.Person: Equatable, Codable = l.name:String'
 
 # Any white-space (or not) are allows
 $ swift-emmet 's . Person = l . name : String'
