@@ -63,6 +63,6 @@ jobs:
           {
             "ref": "${{ github.ref }}",
             "sha256": "${{ steps.set_value_for_formula.outputs.SHA256 }}",
-            "url": "${{ steps.create_release.outputs.upload_url }}",
+            "url": "${{ steps.create_release.outputs.upload_url }}"
           }
         '
