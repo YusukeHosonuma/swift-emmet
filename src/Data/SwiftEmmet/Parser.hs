@@ -62,23 +62,12 @@ word = pack <$> many1 (letter <|> digit)
 typeName :: Parser Text
 typeName = resolveAlias <$> word
 
-resolveAlias :: Type -> Type
-resolveAlias t = case toUpper t of
-    "S" -> "String"
-    "B" -> "Bool"
-    "I" -> "Int"
-    "L" -> "Long"
-    "F" -> "Float"
-    "D" -> "Double"
-    "U" -> "URL"
-    _   -> t
-
 inheritsParser :: Parser [Inherit]
 inheritsParser = schar ':' *> inheritParser `sepBy` schar ',' 
               <|> return []
     where 
         inheritParser :: Parser Inherit
-        inheritParser = Inherit <$> word
+        inheritParser = resolveInheritAlias. Inherit <$> word
 
 -- ignore case-sensitive
 ichar :: Char -> Parser Char
@@ -91,3 +80,24 @@ schar c = skipSpace *> char c <* skipSpace
 showParseResult :: Show a => Result a -> Either Text a
 showParseResult (Done _ r) = Right r
 showParseResult r          = Left . pack $ show r
+
+--------------------------------------------------------------------------------
+
+resolveAlias :: Type -> Type
+resolveAlias t = case toUpper t of
+    "S" -> "String"
+    "B" -> "Bool"
+    "I" -> "Int"
+    "L" -> "Long"
+    "F" -> "Float"
+    "D" -> "Double"
+    "U" -> "URL"
+    _   -> t
+
+resolveInheritAlias :: Inherit -> Inherit
+resolveInheritAlias (Inherit t) = Inherit resolved
+    where
+        resolved = case toUpper t of
+            "C" -> "Codable"
+            "E" -> "Equatable"
+            _  -> t
