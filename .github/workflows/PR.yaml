@@ -17,11 +17,11 @@ jobs:
     #   uses: actions/cache@v2
     #   with:
     #     path: ~/.stack
-    #     key: "stack2-${{ hashFiles('**/stack.yaml.lock') }}"
+    #     key: "stack-${{ hashFiles('**/stack.yaml.lock') }}"
 
-    - uses: haskell/actions/setup@v1.1.7
+    - uses: haskell/actions/setup@v1.2.0
       with:
-        ghc-version: 8.10.3
+        ghc-version: 8.10.4
         enable-stack: true
         stack-version: 'latest'
 
