@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.33.0.
+-- This file has been generated from package.yaml by hpack version 0.34.3.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: b00aebfd7ba9ca7667f072e250f403e955fdb431d9a734dd03c7573c8e4c11f8
+-- hash: 42165197f79fc54d7788ad8a90e3d686101edff6beb9b1c255720689af8b733e
 
 name:           swift-emmet
 version:        0.1.0.0
@@ -60,10 +60,9 @@ executable swift-emmet
 
 test-suite swift-emmet-test
   type: exitcode-stdio-1.0
-  main-is: Spec.hs
+  main-is: Main.hs
   other-modules:
-      GenerateSpec
-      ParserSpec
+      SwiftEmmet
       Paths_swift_emmet
   hs-source-dirs:
       test
@@ -74,5 +73,7 @@ test-suite swift-emmet-test
     , base >=4.7 && <5
     , optparse-applicative
     , swift-emmet
+    , tasty
+    , tasty-hunit
     , text
   default-language: Haskell2010
