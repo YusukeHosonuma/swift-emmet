@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 42165197f79fc54d7788ad8a90e3d686101edff6beb9b1c255720689af8b733e
+-- hash: 49d4d294dc1c629ca20f993977effbfb12189ac0ad418804cebcfe1c6237ff52
 
 name:           swift-emmet
 version:        0.1.0.0
@@ -35,8 +35,7 @@ library
   hs-source-dirs:
       src
   build-depends:
-      HUnit
-    , attoparsec
+      attoparsec
     , base >=4.7 && <5
     , optparse-applicative
     , text
@@ -50,9 +49,7 @@ executable swift-emmet
       app
   ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      HUnit
-    , attoparsec
-    , base >=4.7 && <5
+      base >=4.7 && <5
     , optparse-applicative
     , swift-emmet
     , text
@@ -68,9 +65,7 @@ test-suite swift-emmet-test
       test
   ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      HUnit
-    , attoparsec
-    , base >=4.7 && <5
+      base >=4.7 && <5
     , optparse-applicative
     , swift-emmet
     , tasty
