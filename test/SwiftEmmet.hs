@@ -38,6 +38,13 @@ testStruct = testGroup "Struct"
         , "    var age: Int"
         , "}"
         ]
+    , testEval "Ommit prefix 's.'"
+        "Person = name:String, age:Int"
+        [ "struct Person {"
+        , "    var name: String"
+        , "    var age: Int"
+        , "}"
+        ]
     ]
 
 testClass :: TestTree
@@ -112,7 +119,7 @@ testAlias = testGroup "Alias"
 testToken :: TestTree 
 testToken = testGroup "Token"
     [ testEval "Upper-case"
-        "S.Person:E,C=l.name:S,v.age:I" expected
+        "S.Person:E,C=L.name:S,V.age:I" expected
     , testEval "Lower-case"
         "s.Person:e,c=l.name:s,v.age:i" expected
     , testEval "Use white-space"
