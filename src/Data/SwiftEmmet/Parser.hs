@@ -13,7 +13,7 @@ module Data.SwiftEmmet.Parser
 
 import           Control.Applicative
 import           Data.Attoparsec.Text
-import           Data.Char            (toLower)
+import qualified Data.Char            as C (toLower, toUpper)
 import           Data.Text            (Text, pack, toUpper)
 
 type Field = Text
@@ -39,8 +39,8 @@ exprParser = Expr
 
 dataTypeParser :: Parser DataType
 dataTypeParser =
-    (Struct <$> (ichar 'S' *> schar '.' *> word)) <|>
-    (Class  <$> (ichar 'C' *> schar '.' *> word)) <|>
+    (Struct <$> (ichar 's' *> schar '.' *> word)) <|>
+    (Class  <$> (ichar 'c' *> schar '.' *> word)) <|>
     (Struct <$> word)
 
 propertiesParser :: Parser [Property]
@@ -50,8 +50,8 @@ propertyParser :: Parser Property
 propertyParser = Property <$> variableType <*> field <*> (schar ':' *> typeName)
     where
         variableType :: Parser VariableType
-        variableType = (ichar 'v' *> schar '.' *> return Var) 
-                   <|> (ichar 'l' *> schar '.' *> return Let) 
+        variableType = (ichar 'v' *> schar '.' *> return Var)
+                   <|> (ichar 'l' *> schar '.' *> return Let)
                    <|> return Var
 
         field :: Parser Text
@@ -64,15 +64,15 @@ typeName :: Parser Text
 typeName = resolveAlias <$> word
 
 inheritsParser :: Parser [Inherit]
-inheritsParser = schar ':' *> inheritParser `sepBy` schar ',' 
+inheritsParser = schar ':' *> inheritParser `sepBy` schar ','
               <|> return []
-    where 
+    where
         inheritParser :: Parser Inherit
         inheritParser = resolveInheritAlias. Inherit <$> word
 
 -- ignore case-sensitive
 ichar :: Char -> Parser Char
-ichar c = schar c <|> schar (toLower c)
+ichar c = schar (C.toLower c) <|> schar (C.toUpper c)
 
 -- ignore enclose white-spaces
 schar :: Char -> Parser Char
@@ -101,4 +101,4 @@ resolveInheritAlias (Inherit t) = Inherit resolved
         resolved = case toUpper t of
             "C" -> "Codable"
             "E" -> "Equatable"
-            _  -> t
+            _   -> t

@@ -119,7 +119,7 @@ testAlias = testGroup "Alias"
 testToken :: TestTree 
 testToken = testGroup "Token"
     [ testEval "Upper-case"
-        "S.Person:E,C=l.name:S,v.age:I" expected
+        "S.Person:E,C=L.name:S,V.age:I" expected
     , testEval "Lower-case"
         "s.Person:e,c=l.name:s,v.age:i" expected
     , testEval "Use white-space"
