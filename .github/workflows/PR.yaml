@@ -4,22 +4,18 @@ on: [pull_request]
 
 jobs:
   test:
-    runs-on: macos-latest # TODO: Linux イメージでもいいかも
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
 
-    # Note:
-    # 現状だとキャッシュすると次回の実行でエラーになってしまうので無効化。
-    # `/Users/runner/.stack/setup-exe-cache/x86_64-osx/Cabal-simple_mPHDZzAJ_3.2.1.0_ghc-8.10.3: cannot execute binary file`
-    #
-    # - name: Cache .stack
-    #   uses: actions/cache@v2
-    #   with:
-    #     path: ~/.stack
-    #     key: "stack2-${{ hashFiles('**/stack.yaml.lock') }}"
+    - name: Cache .stack
+      uses: actions/cache@v2
+      with:
+        path: ~/.stack
+        key: "stack-${{ hashFiles('**/stack.yaml.lock') }}"
 
-    - uses: haskell/actions/setup@v1.1.7
+    - uses: haskell/actions/setup@v1.2
       with:
         ghc-version: 8.10.3
         enable-stack: true
