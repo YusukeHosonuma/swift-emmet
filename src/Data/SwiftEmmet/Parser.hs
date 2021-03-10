@@ -40,7 +40,8 @@ exprParser = Expr
 dataTypeParser :: Parser DataType
 dataTypeParser =
     (Struct <$> (ichar 'S' *> schar '.' *> word)) <|>
-    (Class  <$> (ichar 'C' *> schar '.' *> word))
+    (Class  <$> (ichar 'C' *> schar '.' *> word)) <|>
+    (Struct <$> word)
 
 propertiesParser :: Parser [Property]
 propertiesParser = propertyParser `sepBy` schar ','

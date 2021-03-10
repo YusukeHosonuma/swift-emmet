@@ -38,6 +38,13 @@ testStruct = testGroup "Struct"
         , "    var age: Int"
         , "}"
         ]
+    , testEval "Ommit prefix 's.'"
+        "Person = name:String, age:Int"
+        [ "struct Person {"
+        , "    var name: String"
+        , "    var age: Int"
+        , "}"
+        ]
     ]
 
 testClass :: TestTree
