@@ -43,7 +43,7 @@ executables:
 
 tests:
   swift-emmet-test:
-    main:                Spec.hs
+    main:                Main.hs
     source-dirs:         test
     ghc-options:
     - -Wall
@@ -52,3 +52,5 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - swift-emmet
+    - tasty
+    - tasty-hunit
