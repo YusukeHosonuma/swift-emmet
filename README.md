@@ -3,7 +3,7 @@
 A CLI tool that generate struct or class by simple-syntax.
 
 ```bash
-$ swift-emmet "s.Pserson: E, C = name: S, age: I, weight: D"
+$ swift-emmet "Pserson: E, C = name: S, age: I, weight: D"
 ```
 
 This will generate follows.
@@ -26,8 +26,14 @@ struct Pserson: Equatable, Codable {
 
 Basic types and protocols are supported aliases (case is ignored).
 
+The following commands are generate same outputs.
+
 ```bash
-$ swift-emmet 's.Person: E, C = name:S, age:I, weight:D'
+$ swift-emmet 'Person: E, C = name:S, age:I, weight:D'
+$ swift-emmet 'Person: Equatable, Codable = name:String, age:Int, weight:Double'
+```
+
+```swift
 struct Person: Equatable, Codable {
     var name: String
     var age: Int
@@ -50,9 +56,7 @@ struct Person: Equatable, Codable {
 | E | Equatable |
 | C | Codable   |
 
-## Usage
-
-### Example
+## Example
 
 ```bash
 # Generate struct
@@ -72,7 +76,7 @@ $ swift-emmet 's . Person = l . name : String'
 $ swift-emmet 's.Person=l.name:String'
 ```
 
-### REPL
+## REPL
 
 If you run `swift-emmet` without options, REPL will be started.
 
@@ -92,7 +96,7 @@ struct Person {
 swift-emmet> exit # Bye
 ```
 
-### Available Commands
+## Available Commands
 
 ```bash
 $ swift-emmet --help
